@@ -30,5 +30,7 @@ target_link_libraries(${PROJECT_NAME}
 
 add_executable(unique_lock src/unique_lock.cpp)
 target_link_libraries(unique_lock ${PROJECT_NAME})
+add_executable(mutex src/mutex.cpp)
+target_link_libraries(mutex ${PROJECT_NAME})
 
 
