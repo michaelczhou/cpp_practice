@@ -1,0 +1,7 @@
+import os
+env = Environment(LIBS=['protobuf'], LIBPATH='/home/jiye/protobuf-2.4.1-install/lib', CPPPATH=['.', '/home/jiye/protobuf-2.4.1-install/include'])
+env.Object ('lm.common.pb.cc', )
+env.Object ('lm.person.pb.cc', )
+common_objects = ['lm.person.pb.o', 'lm.common.pb.o']
+env.Program (target = "writer", source = common_objects + ['writer.cpp'])
+env.Program (target = "reader", source = ['reader.cpp'] + common_objects)

@@ -1,0 +1,3 @@
+Program ("print_by_fopen.c");
+Program ("print_by_map.c");
+Program ("print_by_open.c");

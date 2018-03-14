@@ -1,0 +1,5 @@
+#!/usr/bin/python 
+import os
+env = Environment()
+#env.Program("reverse_by_word.c")
+env.Program(target = "reverse_by_word", source = ["reverse_by_word.c",])

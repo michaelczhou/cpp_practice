@@ -1,0 +1,9 @@
+get protobuf 
+	url:  http://code.google.com/p/protobuf/downloads/list
+compile protobuf
+	./configure --prefix=install_dir
+	make && make check && make install
+generate protobuf cpp_output
+	protoc --proto_path import_dir --cpp_output dst_dir src_file
+compile program
+	scons --clean && scons

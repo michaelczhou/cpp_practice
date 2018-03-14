@@ -1,0 +1,23 @@
+scp会先trunk文件然后再写进去新的东西，也就是其实是编辑同一个文件，假如这个事情有个进程正在读取该文件，
+那就会出问题。
+print_by_open：通过open打开文件，然后每隔两秒读取一次文件的内容 (read)
+print_by_fopen: 通过fopen带来文件，然后每隔两秒读取一次文件的内容(fgets)
+print_by_map: 通过open和mmap打开文件，然后每隔两秒读取一次文件的内容
+
+echo right > log
+./print_by_open
+打开另一个终端
+scp scp_log localhost:path_of_log
+此时回到上一个终端，就会发现打印的内容被修改了，从而证明了scp确实会trunc文件然后再写入新的东西
+
+print_by_mmap 的情况相同
+cp 的情况和scp 相同
+
+有一点小意外是print_by_fopen没有修改log的内容，后来分析了一下，是因为标准IO会buffer文件内容造成的，使用setbuf把buffer去掉，就ok了
+
+如何解决这个问题：
+先用rm，然后再scp，这样他们原来读取文件的进程和scp进程操作的文件就不是同一个了
+使用install，也可以避免这个问题，因此在cp的环境下，可以用install代替，如果scp环境下，那就只能先scp到一个临时文件，然后再install，
+这个方法不用rm，适合线上运维操作。因为rm之后就找不回来旧文件了。
+
+

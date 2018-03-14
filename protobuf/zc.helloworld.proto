@@ -1,4 +1,4 @@
-package zc;
+package protobuf;
 message helloworld
 {
     required int32    id = 1;  //ID
