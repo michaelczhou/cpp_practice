@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 2.8)		
-project(multi_tread)
+project(basic)
 
 IF(NOT CMAKE_BUILD_TYPE)
     SET(CMAKE_BUILD_TYPE Release)
@@ -21,18 +21,17 @@ ${PROJECT_SOURCE_DIR}/include
 )
 
 add_library(${PROJECT_NAME} SHARED
-src/unique_lock.cpp
+src/hello.cpp
 )
-
 target_link_libraries(${PROJECT_NAME}
 
 )
 
-add_executable(unique_lock src/unique_lock.cpp)
-target_link_libraries(unique_lock ${PROJECT_NAME})
-add_executable(mutex src/mutex.cpp)
-target_link_libraries(mutex ${PROJECT_NAME})
-add_executable(thread src/thread.cpp)
-target_link_libraries(thread )
+add_executable(hello src/hello.cpp)
+target_link_libraries(hello ${PROJECT_NAME})
+
+add_executable(add_item src/add_item.cpp)
+#add_executable(mutex src/mutex.cpp)
+#target_link_libraries(mutex ${PROJECT_NAME})
 
 
